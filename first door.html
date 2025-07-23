@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareGrid: Your Clinic's Digital Front Door</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light grey background */
+            color: #1e293b; /* A dark slate color for text */
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0f172a; /* A very dark blue for titles */
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #475569;
+            margin-top: 1rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1d4ed8; /* A strong blue for key numbers */
+        }
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #475569;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-button {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .cta-button:hover {
+            background-color: #1d4ed8;
+        }
+        .price-card ul {
+            flex-grow: 1;
+        }
+        /* Animation for elements on scroll */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 rounded-lg px-4 py-2 flex items-center justify-center h-10">
+                    <span class="text-white font-bold text-lg">CareGrid</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#challenge" class="text-gray-600 hover:text-blue-600 transition">The Challenge</a>
+                <a href="#solution" class="text-gray-600 hover:text-blue-600 transition">The Solution</a>
+                <a href="#pricing" class="text-gray-600 hover:text-blue-600 transition">Pricing</a>
+                <a href="#why-caregrid" class="text-gray-600 hover:text-blue-600 transition">Why CareGrid?</a>
+            </div>
+            <a href="#contact" class="cta-button">Schedule a Demo</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="section-title max-w-4xl mx-auto">Give Your Clinic a <span class="gradient-text">Digital Front Door</span></h1>
+                <p class="section-subtitle">CareGrid builds a personalized website & webapp for your clinic, transforming your patient experience while streamlining operations for growth and compliance.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+                    <div class="card p-6 text-left">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">For the Modern Doctor</h3>
+                        <p class="text-slate-600 mb-6">A powerful dashboard to manage patients, appointments, and payments, reducing your administrative burden.</p>
+                        <!-- Placeholder for Doctor Dashboard -->
+                        <img src="assets/drdashboard.jpg" alt="CareGrid Doctor Dashboard" class="rounded-lg shadow-md w-full">
+                    </div>
+                    <div class="card p-6 text-left">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4">For Your Staff & Patients</h3>
+                        <p class="text-slate-600 mb-6">Dedicated software for staff to manage patient flow, and a seamless portal for patients to engage with your clinic.</p>
+                        <!-- Placeholder for Patient Dashboard -->
+                        <img src="assets/patientdashboard.jpg" alt="CareGrid Patient and Staff Dashboard" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Challenge Section -->
+        <section id="challenge" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title">The Evolving Indian Healthcare Landscape</h2>
+                <p class="section-subtitle">Private clinics face mounting pressures that strain resources, burden staff, and impact patient care.</p>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Rising Operational Costs</h3>
+                        <p class="text-slate-600">Soaring expenses for salaries, supplies, and utilities threaten profitability in a price-sensitive market.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Overwhelming Admin Load</h3>
+                        <p class="text-slate-600">Excessive administrative tasks lead to physician burnout, diverting focus from essential patient care.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Systemic Inefficiencies</h3>
+                        <p class="text-slate-600">Fragmented care delivery leads to redundant tests and a complicated patient journey, eroding trust.</p>
+                    </div>
+                </div>
+                <div class="mt-20 card p-8 lg:p-12">
+                     <h3 class="text-2xl font-bold text-center text-slate-800 mb-8">The High Cost of Patient No-Shows</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <canvas id="noShowPieChart"></canvas>
+                        </div>
+                        <div class="text-left space-y-6">
+                            <div>
+                                <p class="stat-value">14%</p>
+                                <p class="stat-label">Average loss in daily revenue for medical groups due to no-shows.</p>
+                            </div>
+                             <div>
+                                <p class="stat-value">70%</p>
+                                <p class="stat-label">Likelihood a patient won't return after a single missed appointment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution Section -->
+        <section id="solution" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="section-title">Your Integrated Clinic Operating System</h2>
+                    <p class="section-subtitle">CareGrid provides a complete digital ecosystem to solve your clinic's biggest challenges, from patient acquisition to regulatory compliance.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Cards -->
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">Your Digital Front Door</h3>
+                        <p class="text-slate-600">A custom-branded website & webapp that becomes the primary, modern entry point for your patients.</p>
+                    </div>
+                     <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">Powerful Staff Software</h3>
+                        <p class="text-slate-600">Tools for your team to manage patient status (New, Waiting, Done), appointments, and communications efficiently.</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">Smart Appointment Mgmt</h3>
+                        <p class="text-slate-600">Automated SMS/WhatsApp reminders and self-scheduling tools that dramatically reduce no-shows.</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">Patient Engagement Portal</h3>
+                        <p class="text-slate-600">A secure dashboard for patients to view appointments, prescriptions, reports, and payment history.</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">ABDM & DPDPA Compliance</h3>
+                        <p class="text-slate-600">Built-in hub to manage consent, ensure data security, and integrate with the national health ecosystem.</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-2 text-blue-700">Specialty-Specific Modules</h3>
+                        <p class="text-slate-600">Custom tools for IVF, Pediatrics, Dermatology, and more, tailored to your unique practice needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Digital Front Door Showcase -->
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title">Showcase: Your Clinic's Digital Presence, Reimagined</h2>
+                <p class="section-subtitle">We design beautiful, intuitive, and mobile-first web platforms that reflect your clinic's brand and care philosophy.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+                    <div class="card p-4">
+                        <h3 class="text-lg font-bold text-slate-700 mb-4">Example 1: Multi-Specialty Clinic</h3>
+                        <img src="assets/multispecialityclinic.jpg" alt="Example Clinic Website" class="rounded-lg shadow-md w-full">
+                    </div>
+                    <div class="card p-4">
+                        <h3 class="text-lg font-bold text-slate-700 mb-4">Example 2: Specialized Practice (e.g., IVF)</h3>
+                        <img src="assets/ivfdemo.jpg" alt="Example Specialty Clinic App" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Impact Section -->
+        <section id="impact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="section-title">The Tangible Impact of CareGrid</h2>
+                    <p class="section-subtitle">Our data-driven solutions deliver a clear and measurable return on investment for your clinic.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4 text-center">Boost Efficiency & Reclaim Revenue</h3>
+                        <p class="text-slate-600 text-center mb-8">Automated reminders and easy scheduling can dramatically reduce patient no-shows.</p>
+                        <canvas id="noShowBarChart"></canvas>
+                    </div>
+                    <div class="card p-8">
+                         <h3 class="text-2xl font-bold text-slate-800 mb-4 text-center">A Clear Path to Profitability</h3>
+                         <p class="text-slate-600 text-center mb-8">CareGrid is an investment that pays for itself by cutting costs and driving growth.</p>
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="section-title">Join Our Founder's Program</h2>
+                    <p class="section-subtitle">Exclusive early-adopter pricing for the first 100 clinics who partner with us. Your feedback shapes the future of Indian health-tech.</p>
+                    <div class="mt-4 text-lg font-semibold text-green-600">Get 50% OFF Annual Prices!</div>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Pricing Card 1 -->
+                    <div class="card p-8 text-center price-card border-t-4 border-slate-400">
+                        <h3 class="text-2xl font-bold mb-2">Essential</h3>
+                        <p class="text-slate-500 mb-6">For core practice management.</p>
+                        <p class="text-4xl font-extrabold mb-4">₹15,000<span class="text-base font-medium text-slate-500">/year</span></p>
+                        <p class="text-slate-500 line-through mb-6">Actual Price: ₹30,000</p>
+                        <ul class="text-left space-y-4 mb-8">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Doctor Software</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Smart Appointment Booking</li>
+                            <li class="flex items-center text-slate-400"><svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="line-through">Digital Front Door</span></li>
+                            <li class="flex items-center text-slate-400"><svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="line-through">Patient & Staff Software</span></li>
+                        </ul>
+                        <a href="#contact" class="mt-auto cta-button bg-slate-600 hover:bg-slate-700 w-full">Get Started</a>
+                        <p class="text-xs text-slate-500 mt-4">Available from September 1st</p>
+                    </div>
+                    <!-- Pricing Card 2 -->
+                    <div class="card p-8 text-center price-card border-t-4 border-blue-500 transform scale-105">
+                         <p class="absolute top-0 -translate-y-1/2 bg-blue-500 text-white text-sm font-semibold px-3 py-1 rounded-full">Most Popular</p>
+                        <h3 class="text-2xl font-bold mb-2">Growth</h3>
+                        <p class="text-slate-500 mb-6">The complete platform experience.</p>
+                        <p class="text-4xl font-extrabold mb-4">₹17,000<span class="text-base font-medium text-slate-500">/year</span></p>
+                        <p class="text-slate-500 line-through mb-6">Actual Price: ₹34,000</p>
+                        <ul class="text-left space-y-4 mb-8">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Doctor, Patient & Staff Software</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Smart Appointment Booking</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Digital Front Door</li>
+                            <li class="flex items-center text-slate-400"><svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg><span class="line-through">Fully Personalized Design</span></li>
+                        </ul>
+                        <a href="#contact" class="mt-auto cta-button w-full">Choose Growth</a>
+                        <p class="text-xs text-slate-500 mt-4">Choose from 1000+ themes</p>
+                    </div>
+                    <!-- Pricing Card 3 -->
+                    <div class="card p-8 text-center price-card border-t-4 border-indigo-500">
+                        <h3 class="text-2xl font-bold mb-2">Ultimate</h3>
+                        <p class="text-slate-500 mb-6">A fully bespoke solution.</p>
+                        <p class="text-4xl font-extrabold mb-4">₹18,000<span class="text-base font-medium text-slate-500">/year</span></p>
+                        <p class="text-slate-500 line-through mb-6">Actual Price: ₹40,000</p>
+                        <ul class="text-left space-y-4 mb-8">
+                           <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Doctor, Patient & Staff Software</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Smart Appointment Booking</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Digital Front Door</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Fully Personalized Design</li>
+                        </ul>
+                        <a href="#contact" class="mt-auto cta-button bg-indigo-600 hover:bg-indigo-700 w-full">Go Ultimate</a>
+                         <p class="text-xs text-slate-500 mt-4">Fully customizable platform</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why CareGrid Section -->
+        <section id="why-caregrid" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="section-title">Your Strategic Advantage in a Digital-First Future</h2>
+                    <p class="section-subtitle">CareGrid is more than a platform; we are your partner in success, built in India, for India.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Seamless ABDM Integration</h3>
+                        <p class="text-slate-600">Unlock government incentives (up to ₹4 Crore) and gain a competitive edge in the national digital health network.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Robust DPDPA Compliance</h3>
+                        <p class="text-slate-600">Our "Compliance-as-a-Service" model protects you from severe legal and financial risks with built-in security and consent management.</p>
+                    </div>
+                    <div class="card p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">A True Partnership</h3>
+                        <p class="text-slate-600">We provide seamless onboarding, comprehensive staff training, and 24/7 India-based support to ensure your success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section id="contact" class="bg-blue-700 text-white">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h2 class="text-4xl font-extrabold mb-4">Ready to Transform Your Clinic?</h2>
+                <p class="text-blue-200 max-w-2xl mx-auto mb-8">Take the next step towards a more efficient, secure, and profitable future. Let us show you how CareGrid can work for your specific needs.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="mailto:ayushshukla@caregrid.co" class="bg-white text-blue-700 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-50 transition w-full md:w-auto">Schedule a Personalized Demo</a>
+                    <a href="tel:+919368385607" class="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white hover:text-blue-700 transition w-full md:w-auto">Call Us: +91-9368385607</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2024 CareGrid. All Rights Reserved.</p>
+            <p class="mt-2 text-sm">Built to empower the future of Indian healthcare.</p>
+             <div class="mt-4 flex justify-center space-x-4">
+                <a href="mailto:ayushshukla@caregrid.co" class="hover:text-white">Email</a>
+                <span>&bull;</span>
+                <a href="https://www.caregrid.co" target="_blank" rel="noopener noreferrer" class="hover:text-white">Website</a>
+             </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Chart.js and interactivity
+
+        // 1. No-Show Reasons Pie Chart
+        const noShowPieCtx = document.getElementById('noShowPieChart').getContext('2d');
+        new Chart(noShowPieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Forgot Appointment', 'Lack of Communication', 'Other Reasons'],
+                datasets: [{
+                    label: 'Reasons for No-Shows',
+                    data: [33, 31.5, 35.5],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.8)', // Blue
+                        'rgba(239, 68, 68, 0.8)',  // Red
+                        'rgba(107, 114, 128, 0.7)' // Gray
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(107, 114, 128, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Primary Reasons for Missed Appointments',
+                        font: { size: 16, weight: 'bold' },
+                        color: '#1e293b'
+                    }
+                }
+            }
+        });
+
+        // 2. No-Show Reduction Bar Chart
+        const noShowBarCtx = document.getElementById('noShowBarChart').getContext('2d');
+        new Chart(noShowBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Typical Clinic', 'With SMS Reminders', 'With CareGrid Platform'],
+                datasets: [{
+                    label: 'Appointment Attendance Rate (%)',
+                    data: [35.5, 79.2, 90], // Using 90 as a projected rate for CareGrid
+                    backgroundColor: [
+                        'rgba(252, 165, 165, 0.7)', // Light Red
+                        'rgba(147, 197, 253, 0.7)', // Light Blue
+                        'rgba(59, 130, 246, 0.8)'   // Strong Blue
+                    ],
+                    borderColor: [
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(96, 165, 250, 1)',
+                        'rgba(37, 99, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Attendance Rate (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` Attendance: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. ROI Timeline Chart
+        const roiCtx = document.getElementById('roiChart').getContext('2d');
+        new Chart(roiCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 0', 'Year 1', 'Year 2', 'Year 3'],
+                datasets: [{
+                    label: 'Investment & Costs',
+                    data: [-18000, -5000, -5000, -5000], // Based on Ultimate plan + annual fee
+                    borderColor: 'rgba(239, 68, 68, 0.8)',
+                    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }, {
+                    label: 'Revenue Gained & Costs Saved',
+                    data: [0, 25000, 35000, 45000], // Projected gains
+                    borderColor: 'rgba(34, 197, 94, 0.8)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Cumulative Financial Impact (₹)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .section-title, .section-subtitle, .stat-value').forEach(el => {
+            observer.observe(el);
+        });
+
+    </script>
+</body>
+</html>
