@@ -92,8 +92,7 @@
 
     <!-- Header & Navigation -->
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
-    <nav class="container mx-auto px-6 py-4 flex flex-col space-y-4 md:flex-row md:justify-between md:space-y-0 items-center">
-        
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <div class="bg-blue-600 rounded-lg px-3 py-2 flex items-center space-x-3">
                 <img src="assets/caregridlogowebsite1.png" alt="CareGrid Logo" class="h-8">
         </div>
@@ -104,9 +103,26 @@
             <a href="#pricing" class="text-gray-600 hover:text-blue-600 transition">Pricing</a>
             <a href="#why-caregrid" class="text-gray-600 hover:text-blue-600 transition">Why CareGrid?</a>
         </div>
+        <a href="form.html" class="hidden md:block cta-button">Schedule a Demo</a>
 
-        <a href="form.html" class="cta-button w-full md:w-auto">Schedule a Demo</a>
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-gray-800 hover:text-blue-600 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
     </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden">
+        <a href="#challenge" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">The Challenge</a>
+        <a href="#solution" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">The Solution</a>
+        <a href="#pricing" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Pricing</a>
+        <a href="#why-caregrid" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Why CareGrid?</a>
+        <div class="p-4">
+             <a href="form.html" class="block text-center cta-button">Schedule a Demo</a>
+        </div>
+    </div>
     </header>
 
     <main>
@@ -357,6 +373,15 @@
              </div>
         </div>
     </footer>
+    <script>
+        // Hamburger Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 
     <script>
         // JavaScript for Chart.js and interactivity
